@@ -35,10 +35,6 @@ public class DriverFactory {
     private static final String SAFARI = "safari";
     private static final String WINDOW_SIZE = "--window-size=" + WINDOW_WIDTH + "x" + WINDOW_HEIGHT;
 
-    // Get a new WebDriver Instance.
-    // There are various implementations for this depending on browser. The required BROWSER can be set as an environment variable.
-    // Refer http://getgauge.io/documentation/user/current/managing_environments/README.html
-
     public static WebDriver getDriver() {
         if (BROWSER == null) {
             WebDriverManager.chromedriver().setup();
@@ -46,9 +42,6 @@ public class DriverFactory {
         }
         switch (BROWSER.toLowerCase())
         {
-            case CHROME:
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
             case HEADLESS_CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments(HEADLESS);

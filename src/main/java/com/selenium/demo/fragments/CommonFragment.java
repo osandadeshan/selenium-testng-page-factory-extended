@@ -1,8 +1,6 @@
 package com.selenium.demo.fragments;
 
 import com.selenium.demo.page.CommonPage;
-import com.selenium.demo.page.HomePage;
-import com.selenium.demo.page.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -16,7 +14,6 @@ import static org.testng.Assert.assertEquals;
  * Time            : 8:23 AM
  * Description     :
  **/
-
 
 public class CommonFragment {
 

@@ -3,6 +3,7 @@ package com.selenium.demo.test.login;
 import base.Base;
 import com.selenium.demo.fragments.CommonFragment;
 import com.selenium.demo.fragments.LoginFragment;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static base.Enums.PageTitle.LOGIN_PAGE_TITLE;
@@ -18,9 +19,18 @@ import static base.Enums.PageTitle.LOGIN_PAGE_TITLE;
 
 public class LoginTest extends Base {
 
+    private LoginFragment loginFragment;
+    private CommonFragment commonFragment;
+
+    @BeforeMethod
+    public void before() {
+        loginFragment = new LoginFragment(driver);
+        commonFragment = new CommonFragment(driver);
+    }
+
     @Test
     public void verifyValidUserLogin() {
-        new LoginFragment(driver)
+        loginFragment
                 .login("osanda@mailinator.com", "1qaz2wsx@")
                 .checkLoggedInUsername("Osanda Nimalarathna")
                 .logout();
@@ -28,9 +38,9 @@ public class LoginTest extends Base {
 
     @Test
     public void verifyInvalidUserLogin() {
-        new LoginFragment(driver)
+        loginFragment
                 .login("osanda@mailinator.com", "1qaz2wsx");
-        new CommonFragment(driver)
+        commonFragment
                 .checkPageTitle(LOGIN_PAGE_TITLE.asString());
     }
 

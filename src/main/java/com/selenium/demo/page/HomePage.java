@@ -1,6 +1,5 @@
 package com.selenium.demo.page;
 
-import base.Base;
 import base.PageProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

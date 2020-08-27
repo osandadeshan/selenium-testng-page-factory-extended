@@ -14,7 +14,6 @@ import org.openqa.selenium.support.PageFactory;
  * Description     :
  **/
 
-
 public class PageProvider {
 
     private static WebDriver driver;

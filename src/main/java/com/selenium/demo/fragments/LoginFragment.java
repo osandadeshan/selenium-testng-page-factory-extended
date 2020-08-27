@@ -3,7 +3,6 @@ package com.selenium.demo.fragments;
 import base.Base;
 import com.selenium.demo.page.CommonPage;
 import com.selenium.demo.page.HomePage;
-import com.selenium.demo.page.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -21,13 +20,11 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginFragment extends Base {
 
-    private final LoginPage loginPage;
     private final HomePage homePage;
     private final CommonPage commonPage;
 
     public LoginFragment(WebDriver driver) {
         commonPage = PageFactory.initElements(driver, CommonPage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
         homePage = PageFactory.initElements(driver, HomePage.class);
     }
 
