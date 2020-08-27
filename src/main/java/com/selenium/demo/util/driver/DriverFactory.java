@@ -22,11 +22,9 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverFactory {
 
-    private static final String BROWSER = System.getenv("browser");
     private static final String WINDOW_WIDTH = System.getenv("window_width");
     private static final String WINDOW_HEIGHT = System.getenv("window_height");
     private static final String HEADLESS = "--headless";
-    private static final String CHROME = "chrome";
     private static final String HEADLESS_CHROME = "headless-chrome";
     private static final String FIREFOX = "firefox";
     private static final String HEADLESS_FIREFOX = "headless-firefox";
@@ -35,12 +33,12 @@ public class DriverFactory {
     private static final String SAFARI = "safari";
     private static final String WINDOW_SIZE = "--window-size=" + WINDOW_WIDTH + "x" + WINDOW_HEIGHT;
 
-    public static WebDriver getDriver() {
-        if (BROWSER == null) {
+    public static WebDriver getDriver(String browserName) {
+        if (browserName == null) {
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
         }
-        switch (BROWSER.toLowerCase())
+        switch (browserName.toLowerCase())
         {
             case HEADLESS_CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();

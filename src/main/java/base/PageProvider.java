@@ -16,17 +16,17 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageProvider {
 
-    private static WebDriver driver;
+    private final WebDriver driver;
 
     public PageProvider(WebDriver driver) {
         this.driver = driver;
     }
 
-    public static LoginPage getLoginPage() {
+    public LoginPage getLoginPage() {
         return PageFactory.initElements(driver, LoginPage.class);
     }
 
-    public static HomePage geHomePage() {
+    public HomePage geHomePage() {
         return PageFactory.initElements(driver, HomePage.class);
     }
 

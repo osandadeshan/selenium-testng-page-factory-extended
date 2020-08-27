@@ -1,12 +1,11 @@
 package com.selenium.demo.page;
 
-import base.PageProvider;
+import base.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static base.Enums.PageTitle.LOGIN_PAGE_TITLE;
 import static base.Enums.PageTitle.MY_STORE_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
 
@@ -19,7 +18,7 @@ import static org.testng.Assert.assertEquals;
  * Description     :
  **/
 
-public class HomePage {
+public class HomePage extends Base {
 
     private final WebDriver driver;
 
@@ -32,19 +31,18 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public HomePage checkPageTitle() {
-        assertEquals(new CommonPage(driver).getBrowserTabTitle(), MY_STORE_PAGE_TITLE.asString());
+    public HomePage checkHomePageTitle() {
+        assertEquals(driver.getTitle(), MY_STORE_PAGE_TITLE.asString());
         return this;
     }
 
     public HomePage checkLoggedInUsername(String username) {
         assertEquals(getLoggedInUsername(), username);
-        return PageProvider.geHomePage();
+        return this;
     }
 
     public void logout() {
         logoutLink.click();
-        assertEquals(new CommonPage(driver).getBrowserTabTitle(), LOGIN_PAGE_TITLE.asString());
     }
 
     private String getLoggedInUsername() {

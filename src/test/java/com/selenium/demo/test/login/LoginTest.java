@@ -1,12 +1,9 @@
 package com.selenium.demo.test.login;
 
 import base.Base;
-import com.selenium.demo.fragments.CommonFragment;
 import com.selenium.demo.fragments.LoginFragment;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static base.Enums.PageTitle.LOGIN_PAGE_TITLE;
 
 /**
  * Project Name    : selenium-testng-page-factory-demo
@@ -20,28 +17,28 @@ import static base.Enums.PageTitle.LOGIN_PAGE_TITLE;
 public class LoginTest extends Base {
 
     private LoginFragment loginFragment;
-    private CommonFragment commonFragment;
 
     @BeforeMethod
     public void before() {
-        loginFragment = new LoginFragment(driver);
-        commonFragment = new CommonFragment(driver);
+        loginFragment = new LoginFragment();
     }
 
     @Test
     public void verifyValidUserLogin() {
         loginFragment
                 .login("osanda@mailinator.com", "1qaz2wsx@")
+                .checkHomePageTitle()
                 .checkLoggedInUsername("Osanda Nimalarathna")
                 .logout();
     }
 
     @Test
     public void verifyInvalidUserLogin() {
-        loginFragment
-                .login("osanda@mailinator.com", "1qaz2wsx");
-        commonFragment
-                .checkPageTitle(LOGIN_PAGE_TITLE.asString());
+        pages().getLoginPage()
+                .setEmail("osanda@mailinator.com")
+                .setPassword("1qaz2wsx")
+                .clickOnSignInButton()
+                .checkLoginPageTitle();
     }
 
 }
