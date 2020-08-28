@@ -1,7 +1,7 @@
-package com.selenium.demo.test.login;
+package test.login;
 
 import base.Base;
-import com.selenium.demo.fragments.LoginFragment;
+import fragments.LoginFragment;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

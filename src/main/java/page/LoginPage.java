@@ -1,4 +1,4 @@
-package com.selenium.demo.page;
+package page;
 
 import base.Base;
 import org.openqa.selenium.WebDriver;

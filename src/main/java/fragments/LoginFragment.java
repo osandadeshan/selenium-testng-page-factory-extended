@@ -1,7 +1,7 @@
-package com.selenium.demo.fragments;
+package fragments;
 
 import base.Base;
-import com.selenium.demo.page.HomePage;
+import page.HomePage;
 
 /**
  * Project Name    : selenium-testng-page-factory-demo

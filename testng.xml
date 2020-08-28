@@ -4,7 +4,7 @@
 <suite name="AllTestsSuite">
     <test name="My First Selenium TestNG Page Factory Demo Test">
         <classes>
-            <class name="com.selenium.demo.test.login.LoginTest"/>
+            <class name="test.login.LoginTest"/>
         </classes>
     </test>
 </suite>

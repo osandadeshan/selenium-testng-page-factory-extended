@@ -1,7 +1,7 @@
 package base;
 
-import com.selenium.demo.page.HomePage;
-import com.selenium.demo.page.LoginPage;
+import page.HomePage;
+import page.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 

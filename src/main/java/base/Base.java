@@ -1,6 +1,6 @@
 package base;
 
-import com.selenium.demo.util.driver.DriverFactory;
+import util.driver.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
