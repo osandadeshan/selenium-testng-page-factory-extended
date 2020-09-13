@@ -16,3 +16,17 @@ public void verifyValidUserLogin() {
 }
 ```
 
+### Extended way
+- Object usages are less
+- Test readability and clarity is high
+
+```java
+@Test
+public void verifyValidUserLogin() {
+    loginFragment
+        .login("osanda@mailinator.com", "1qaz2wsx@")
+        .checkHomePageTitle()
+        .checkLoggedInUsername("Osanda Nimalarathna")
+        .logout();
+}
+```
