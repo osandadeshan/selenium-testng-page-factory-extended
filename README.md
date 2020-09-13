@@ -4,7 +4,15 @@ This is a sample project of more readable implementation with Selenium + Page Fa
 ### Old way
 - Object usages are high
 - Test readability and clarity is less
-https://gist.github.com/osandadeshan/44c8700f7171f6787fad7e25c52bafce
 
-<script src="https://gist.github.com/osandadeshan/44c8700f7171f6787fad7e25c52bafce.js"></script>
+```java
+@Test
+public void verifyValidUserLogin() {
+    loginpage.setEmail("osanda@mailinator.com");
+    loginpage.setPassword("1qaz2wsx@");
+    loginpage.clickOnSignInButton();
+    Assert.assertEquals(commonPage.getBrowserTabTitle(), "My account - My Store");
+    Assert.assertEquals(homepage.getLoggedInUsername(), "Osanda Nimalarathna");
+}
+```
 
