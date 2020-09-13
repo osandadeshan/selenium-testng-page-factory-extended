@@ -1,5 +1,5 @@
 # Selenium TestNG Page Factory Extended
-This is a sample project of more readable implementation with Selenium + Page Factory + TestNG + Java
+This is a sample project to demonstrate high readable test automation implementation with Selenium + Page Factory and Fluent Interface Design Patterns + TestNG + Java.
 
 ### Old way
 - Object usages are high
