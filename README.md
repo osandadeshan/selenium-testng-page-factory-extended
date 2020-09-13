@@ -1,7 +1,7 @@
 # Selenium TestNG Page Factory Extended
 This is a sample project to demonstrate high readable test automation implementation with Selenium + Page Factory and Fluent Interface Design Patterns + TestNG + Java.
 
-### Old way
+### Old approach using page object/page factory design pattern
 - Object usages are high
 - Test readability and clarity is less
 
@@ -16,7 +16,7 @@ public void verifyValidUserLogin() {
 }
 ```
 
-### Extended way
+### Extended approach using page object/page factory and fluent interface design patterns
 - Object usages are less
 - Test readability and clarity is high
 
