@@ -1,6 +1,7 @@
 package test.login;
 
 import base.Base;
+import extended_pages.ExtendedLoginPage;
 import fragments.LoginFragment;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,10 +18,12 @@ import org.testng.annotations.Test;
 public class LoginTest extends Base {
 
     private LoginFragment loginFragment;
+    private ExtendedLoginPage loginPage;
 
     @BeforeMethod
     public void before() {
         loginFragment = new LoginFragment();
+        loginPage = pages().getLoginPage();
     }
 
     @Test
@@ -28,16 +31,18 @@ public class LoginTest extends Base {
         loginFragment
                 .login("osanda@mailinator.com", "1qaz2wsx@")
                 .checkHomePageTitle()
-                .checkLoggedInUsername("Osanda Nimalarathna")
+                .checkLoggedInUsername("Osanda Nimalarathn");
+        loginFragment
                 .logout();
     }
 
     @Test
     public void verifyInvalidUserLogin() {
-        pages().getLoginPage()
+        loginPage
                 .setEmail("osanda@mailinator.com")
                 .setPassword("1qaz2wsx")
-                .clickOnSignInButton()
+                .clickOnSignInButton();
+        loginPage
                 .checkLoginPageTitle();
     }
 

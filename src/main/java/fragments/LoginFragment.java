@@ -1,7 +1,8 @@
 package fragments;
 
 import base.Base;
-import page.HomePage;
+import extended_pages.ExtendedHomePage;
+import extended_pages.ExtendedLoginPage;
 
 /**
  * Project Name    : selenium-testng-page-factory-demo
@@ -14,18 +15,25 @@ import page.HomePage;
 
 public class LoginFragment extends Base {
 
-    private final HomePage homePage;
+    private final ExtendedLoginPage loginPage;
+    private final ExtendedHomePage homePage;
 
     public LoginFragment() {
+        loginPage = pages().getLoginPage();
         homePage = pages().geHomePage();
     }
 
-    public HomePage login(String email, String password) {
+    public ExtendedHomePage login(String email, String password) {
         pages().getLoginPage()
                 .setEmail(email)
                 .setPassword(password)
                 .clickOnSignInButton();
         return homePage;
+    }
+
+    public ExtendedLoginPage logout() {
+        homePage.ClickOnLogoutLink();
+        return loginPage;
     }
 
 }
