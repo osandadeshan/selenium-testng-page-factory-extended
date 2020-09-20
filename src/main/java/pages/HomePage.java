@@ -1,13 +1,10 @@
-package page;
+package pages;
 
 import base.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-
-import static base.Enums.PageTitle.MY_STORE_PAGE_TITLE;
-import static org.testng.Assert.assertEquals;
 
 /**
  * Project Name    : selenium-testng-page-factory-demo
@@ -20,7 +17,7 @@ import static org.testng.Assert.assertEquals;
 
 public class HomePage extends Base {
 
-    private final WebDriver driver;
+    protected final WebDriver driver;
 
     @FindBy(how = How.XPATH, using = "//a[@class='account']/span")
     private WebElement profileNameLabel;
@@ -31,21 +28,11 @@ public class HomePage extends Base {
         this.driver = driver;
     }
 
-    public HomePage checkHomePageTitle() {
-        assertEquals(driver.getTitle(), MY_STORE_PAGE_TITLE.asString());
-        return this;
-    }
-
-    public HomePage checkLoggedInUsername(String username) {
-        assertEquals(getLoggedInUsername(), username);
-        return this;
-    }
-
-    public void logout() {
+    public void ClickOnLogoutLink() {
         logoutLink.click();
     }
 
-    private String getLoggedInUsername() {
+    public String getLoggedInUsername() {
         return profileNameLabel.getText();
     }
 

@@ -1,7 +1,7 @@
 package base;
 
-import page.HomePage;
-import page.LoginPage;
+import extended_pages.ExtendedHomePage;
+import extended_pages.ExtendedLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -22,12 +22,12 @@ public class PageProvider {
         this.driver = driver;
     }
 
-    public LoginPage getLoginPage() {
-        return PageFactory.initElements(driver, LoginPage.class);
+    public ExtendedLoginPage getLoginPage() {
+        return PageFactory.initElements(driver, ExtendedLoginPage.class);
     }
 
-    public HomePage geHomePage() {
-        return PageFactory.initElements(driver, HomePage.class);
+    public ExtendedHomePage geHomePage() {
+        return PageFactory.initElements(driver, ExtendedHomePage.class);
     }
 
 }
