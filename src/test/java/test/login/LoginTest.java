@@ -31,7 +31,7 @@ public class LoginTest extends Base {
         loginFragment
                 .login("osanda@mailinator.com", "1qaz2wsx@")
                 .checkHomePageTitle()
-                .checkLoggedInUsername("Osanda Nimalarathn");
+                .checkLoggedInUsername("Osanda Nimalarathna");
         loginFragment
                 .logout();
     }

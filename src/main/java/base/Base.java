@@ -37,12 +37,10 @@ public class Base {
 
     private static final String fileSeparator = File.separator;
     private static final String rootDirectory = System.getProperty("user.dir");
-    public static WebDriver driver;
-    public ExtentHtmlReporter htmlReporter;
-    public ExtentReports extent;
-    public ExtentTest test;
+    private static WebDriver driver;
+    private ExtentReports extent;
 
-    private static String TakeScreenshot(WebDriver driver, String screenshotName) {
+    private static String takeScreenshot(WebDriver driver, String screenshotName) {
         String timestamp = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date());
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
@@ -59,7 +57,7 @@ public class Base {
 
     @BeforeTest
     public void extentReportSetup() {
-        htmlReporter = new ExtentHtmlReporter(rootDirectory + fileSeparator + "reports" + fileSeparator +
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(rootDirectory + fileSeparator + "reports" + fileSeparator +
                 "html-report" + fileSeparator + "execution-report.html");
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
@@ -83,15 +81,15 @@ public class Base {
     }
 
     @AfterMethod
-    public void closeAllDrivers(ITestResult result) {
-        test = extent.createTest(result.getName());
+    public void generateReportDataAndCloseAllDrivers(ITestResult result) {
+        ExtentTest test = extent.createTest(result.getName());
         switch (result.getStatus()) {
             case ITestResult.FAILURE:
                 test.log(Status.FAIL, MarkupHelper.createLabel(result.getName(), ExtentColor.RED));
                 test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().getMessage(), ExtentColor.RED));
                 try {
                     test.fail("Screenshot at the failed moment is below " +
-                            test.addScreenCaptureFromPath(TakeScreenshot(driver, result.getName())));
+                            test.addScreenCaptureFromPath(takeScreenshot(driver, result.getName())));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
