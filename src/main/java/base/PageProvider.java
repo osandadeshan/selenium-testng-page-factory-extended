@@ -1,12 +1,13 @@
 package base;
 
-import extended_pages.ExtendedHomePage;
-import extended_pages.ExtendedLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import pages.HomePage;
+import pages.LoginPage;
+import pages.SearchResultsPage;
 
 /**
- * Project Name    : selenium-testng-page-factory-demo
+ * Project Name    : selenium-testng-page-factory-extended
  * Developer       : Osanda Deshan
  * Version         : 1.0.0
  * Date            : 8/26/2020
@@ -22,12 +23,15 @@ public class PageProvider {
         this.driver = driver;
     }
 
-    public ExtendedLoginPage getLoginPage() {
-        return PageFactory.initElements(driver, ExtendedLoginPage.class);
+    public LoginPage getLoginPage() {
+        return PageFactory.initElements(driver, LoginPage.class);
     }
 
-    public ExtendedHomePage geHomePage() {
-        return PageFactory.initElements(driver, ExtendedHomePage.class);
+    public HomePage getHomePage() {
+        return PageFactory.initElements(driver, HomePage.class);
     }
 
+    public SearchResultsPage getSearchResultsPage() {
+        return PageFactory.initElements(driver, SearchResultsPage.class);
+    }
 }
