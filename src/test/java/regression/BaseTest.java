@@ -29,10 +29,11 @@ public class BaseTest extends BaseUiComponent {
     @BeforeMethod
     public void spinUpDriver() {
         DriverHolder.setDriver(DriverFactory.getNewDriverInstance(System.getProperty("browser.type")));
-        BaseUiComponent.setDriver(driver);
         driver = getDriver();
         driver.manage().window().maximize();
         driver.navigate().to(APPLICATION_URL);
+
+        BaseUiComponent.setDriver(driver);
     }
 
     @AfterMethod

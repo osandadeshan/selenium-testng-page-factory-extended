@@ -6,14 +6,15 @@ This is a sample project to demonstrate high readable test automation implementa
 - Test readability and clarity is less
 
 ```java
-@Test
-public void verifyValidUserLogin() {
-    loginpage.setEmail("osanda@mailinator.com");
-    loginpage.setPassword("1qaz2wsx@");
-    loginpage.clickOnSignInButton();
-    Assert.assertEquals(commonPage.getBrowserTabTitle(), "My account - My Store");
-    Assert.assertEquals(homepage.getLoggedInUsername(), "Osanda Nimalarathna");
-}
+@Category(SIGN_IN)
+@Test(description = "Verify that a valid user can login to the application")
+public void testValidUserLogin(){
+        fragments().getLoginFragment()
+        .login(USER_EMAIL,USER_PASSWORD)
+        .checkHomePageTitle()
+        .getNavigationBlock()
+        .checkLoggedInUsername(FULL_USER_NAME);
+        }
 ```
 
 ### Extended approach using page object/page factory and fluent interface design patterns
@@ -21,12 +22,12 @@ public void verifyValidUserLogin() {
 - Test readability and clarity is high
 
 ```java
-@Test
-public void verifyValidUserLogin() {
-    loginFragment
-        .login("osanda@mailinator.com", "1qaz2wsx@")
-        .checkHomePageTitle()
-        .checkLoggedInUsername("Osanda Nimalarathna")
-        .logout();
-}
+@Category(SIGN_IN)
+@Test(description = "Verify that an invalid user cannot login to the application")
+public void testInvalidUserLogin(){
+        fragments().getLoginFragment()
+        .login(USER_EMAIL,"123456");
+        pages().getLoginPage()
+        .checkLoginPageTitle();
+        }
 ```
