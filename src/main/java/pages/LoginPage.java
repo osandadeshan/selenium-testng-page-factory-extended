@@ -1,13 +1,14 @@
 package pages;
 
-import base.Base;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import pages.blocks.LoginBlock;
+
+import static base.PageTitle.LOGIN_PAGE_TITLE;
+import static org.testng.Assert.assertEquals;
 
 /**
- * Project Name    : selenium-testng-page-factory-demo
+ * Project Name    : selenium-testng-page-factory-extended
  * Developer       : Osanda Deshan
  * Version         : 1.0.0
  * Date            : 7/15/2019
@@ -15,34 +16,18 @@ import org.openqa.selenium.support.How;
  * Description     :
  **/
 
-public class LoginPage extends Base {
-
-    protected final WebDriver driver;
-
-    @FindBy(how = How.ID, using = "email")
-    private WebElement emailTextBox;
-    @FindBy(how = How.ID, using = "passwd")
-    private WebElement passwordTextBox;
-    @FindBy(how = How.XPATH, using = "//p[@class='submit']//span[1]")
-    private WebElement signInButton;
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public LoginPage setEmail(String email) {
-        emailTextBox.sendKeys(email);
+    public LoginBlock getLoginBlock() {
+        return PageFactory.initElements(driver, LoginBlock.class);
+    }
+
+    public LoginPage checkLoginPageTitle() {
+        assertEquals(driver.getTitle(), LOGIN_PAGE_TITLE.getTitle());
         return this;
     }
-
-    public LoginPage setPassword(String password) {
-        passwordTextBox.sendKeys(password);
-        return this;
-    }
-
-    public LoginPage clickOnSignInButton() {
-        signInButton.click();
-        return this;
-    }
-
 }

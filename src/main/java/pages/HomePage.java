@@ -1,13 +1,17 @@
 package pages;
 
-import base.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import pages.blocks.NavigationBlock;
+
+import static base.PageTitle.MY_STORE_PAGE_TITLE;
+import static org.testng.Assert.assertEquals;
 
 /**
- * Project Name    : selenium-testng-page-factory-demo
+ * Project Name    : selenium-testng-page-factory-extended
  * Developer       : Osanda Deshan
  * Version         : 1.0.0
  * Date            : 7/15/2019
@@ -15,25 +19,34 @@ import org.openqa.selenium.support.How;
  * Description     :
  **/
 
-public class HomePage extends Base {
+public class HomePage extends BasePage {
 
-    protected final WebDriver driver;
+    @FindBy(how = How.ID, using = "search_query_top")
+    private WebElement TXT_SEARCH;
 
-    @FindBy(how = How.XPATH, using = "//a[@class='account']/span")
-    private WebElement profileNameLabel;
-    @FindBy(how = How.XPATH, using = "//a[@class='logout']")
-    private WebElement logoutLink;
+    @FindBy(how = How.CSS, using = "button[name='submit_search']")
+    private WebElement BTN_SEARCH;
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public void ClickOnLogoutLink() {
-        logoutLink.click();
+    public NavigationBlock getNavigationBlock() {
+        return PageFactory.initElements(driver, NavigationBlock.class);
     }
 
-    public String getLoggedInUsername() {
-        return profileNameLabel.getText();
+    public HomePage checkHomePageTitle() {
+        assertEquals(driver.getTitle(), MY_STORE_PAGE_TITLE.getTitle());
+        return this;
     }
 
+    public HomePage inputSearchItemName(String itemName) {
+        sendKeys(TXT_SEARCH, itemName);
+        return this;
+    }
+
+    public HomePage clickOnSearchButton() {
+        click(BTN_SEARCH);
+        return this;
+    }
 }

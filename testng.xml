@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="My Store Test Suite">
+<suite name="My Store Regression Suite">
     <test name="Login Tests">
         <classes>
-            <class name="test.login.LoginTest"/>
+            <class name="regression.login.LoginTest"/>
+            <class name="regression.login.LogoutTest"/>
+        </classes>
+    </test>
+    <test name="Search Tests">
+        <classes>
+            <class name="regression.search.SearchTest"/>
         </classes>
     </test>
 </suite>
