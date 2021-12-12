@@ -5,19 +5,11 @@ import com.maxsoft.testngtestresultsanalyzer.DriverHolder;
 import com.maxsoft.testngtestresultsanalyzer.TestAnalyzeReportListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import util.DriverFactory;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Comparator;
-import java.util.Optional;
-
 import static com.maxsoft.testngtestresultsanalyzer.DriverHolder.getDriver;
-import static org.openqa.selenium.remote.BrowserType.CHROME;
 import static test_data.EnvironmentTestData.APPLICATION_URL;
 
 /**
@@ -36,31 +28,15 @@ public class BaseTest extends BaseUiComponent {
 
     @BeforeMethod
     public void spinUpDriver() {
-        spinUpDriverAndNavigateToUrl(System.getProperty("browser.type"), APPLICATION_URL);
+        DriverHolder.setDriver(DriverFactory.getNewDriverInstance(System.getProperty("browser.type")));
         BaseUiComponent.setDriver(driver);
+        driver = getDriver();
+        driver.manage().window().maximize();
+        driver.navigate().to(APPLICATION_URL);
     }
 
     @AfterMethod
     public void killDriver() {
         driver.quit();
-    }
-
-    @AfterSuite
-    public void openExecutionReport() {
-        try {
-            Optional<Path> lastFilePath = Files.list(Paths.get("./reports/html-reports"))
-                    .filter(f -> !Files.isDirectory(f))
-                    .max(Comparator.comparingLong(f -> f.toFile().lastModified()));
-            lastFilePath.ifPresent(path -> spinUpDriverAndNavigateToUrl(CHROME, path.toAbsolutePath().toString()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void spinUpDriverAndNavigateToUrl(String browserName, String url) {
-        DriverHolder.setDriver(DriverFactory.getNewDriverInstance(browserName));
-        driver = getDriver();
-        driver.manage().window().maximize();
-        driver.navigate().to(url);
     }
 }
