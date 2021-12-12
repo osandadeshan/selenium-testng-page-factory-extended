@@ -14,7 +14,7 @@ public void testValidUserLogin(){
         .checkHomePageTitle()
         .getNavigationBlock()
         .checkLoggedInUsername(FULL_USER_NAME);
-        }
+}
 ```
 
 ### Extended approach using page object/page factory and fluent interface design patterns
@@ -29,5 +29,5 @@ public void testInvalidUserLogin(){
         .login(USER_EMAIL,"123456");
         pages().getLoginPage()
         .checkLoginPageTitle();
-        }
+}
 ```
