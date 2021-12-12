@@ -9,11 +9,11 @@ This is a sample project to demonstrate high readable test automation implementa
 @Category(SIGN_IN)
 @Test(description = "Verify that a valid user can login to the application")
 public void testValidUserLogin(){
-        fragments().getLoginFragment()
-        .login(USER_EMAIL,USER_PASSWORD)
-        .checkHomePageTitle()
-        .getNavigationBlock()
-        .checkLoggedInUsername(FULL_USER_NAME);
+    loginpage.setEmail("osanda@mailinator.com");
+    loginpage.setPassword("1qaz2wsx@");
+    loginpage.clickOnSignInButton();
+    Assert.assertEquals(commonPage.getBrowserTabTitle(), "My account - My Store");
+    Assert.assertEquals(homepage.getLoggedInUsername(), "Osanda Nimalarathna");
 }
 ```
 
@@ -23,11 +23,12 @@ public void testValidUserLogin(){
 
 ```java
 @Category(SIGN_IN)
-@Test(description = "Verify that an invalid user cannot login to the application")
-public void testInvalidUserLogin(){
-        fragments().getLoginFragment()
-        .login(USER_EMAIL,"123456");
-        pages().getLoginPage()
-        .checkLoginPageTitle();
+@Test(description = "Verify that a valid user can login to the application")
+public void testValidUserLogin(){
+    fragments().getLoginFragment()
+        .login(USER_EMAIL,USER_PASSWORD)
+        .checkHomePageTitle()
+        .getNavigationBlock()
+        .checkLoggedInUsername(FULL_USER_NAME);
 }
 ```
