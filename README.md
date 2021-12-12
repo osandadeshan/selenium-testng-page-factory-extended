@@ -26,7 +26,7 @@ public void testValidUserLogin(){
 @Test(description = "Verify that a valid user can login to the application")
 public void testValidUserLogin(){
     fragments().getLoginFragment()
-        .login(USER_EMAIL,USER_PASSWORD)
+        .login(USER_EMAIL, USER_PASSWORD)
         .checkHomePageTitle()
         .getNavigationBlock()
         .checkLoggedInUsername(FULL_USER_NAME);
